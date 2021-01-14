@@ -1,15 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "Tmall-tickets",
-  "version": "1.0",
-  "description": "天猫超市抢购茅台",
+  "name": "tmall-tickets",
+  "version": "1.1",
+  "description": "天猫超市抢购茅台1.1-可以同步淘宝服务器时间",
   "browser_action": {
     "default_icon": "icon.png"
   },
   "content_scripts": [
     {
       "matches": ["https://chaoshi.detail.tmall.com/*","https://cart.tmall.com/*","https://buy.tmall.com/*"],
-      "js": ["maotai.js"],
+      "js": ["jquery3.5.1.js","taoBaoTime.js","maotai.js"],
 	  "run_at": "document_idle"
     }
   ]
