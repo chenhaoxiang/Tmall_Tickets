@@ -128,7 +128,7 @@ function enterTimeCheckLoop(callback) {
         console.log('间隔时间大于1分钟，10秒输出一次倒计时');
     }else {
         intervalTime = 30000;
-        console.log('间隔时间大于10分钟，30秒输出一次倒计时');
+        console.log('间隔时间大于5分钟，30秒输出一次倒计时');
     }
     if (diff < -900) {
         console.log('时间过了！');
