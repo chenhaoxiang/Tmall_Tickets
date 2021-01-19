@@ -98,7 +98,7 @@ var dDate = new Date();  //10点和20点开抢
 if (dDate.getHours() < 10) {
     dDate.setHours(9, 59, 59.2);
 } else {
-    dDate.setHours(19, 59, 59.2);
+    dDate.setHours(19, 59, 59.990);
     // dDate.setHours(21, 59, 59.2);
 }
 
@@ -119,10 +119,22 @@ function enterTimeCheckLoop(callback) {
     var diff = time - taoBaoTime;
     console.log("距离开始抢购倒计时：" + diff + "毫秒/" + (diff/1000)+"秒,倒计时次数:" + (++times));
     //间隔时间需要计算，当在1分钟内时，使用300。暂时先这样吧
-    if(diff < 20000){
-        intervalTime=300;
-    }else if(diff < 60000){
+    if(diff < 100){
+        intervalTime=10;
+    }else if(diff < 500){
+        intervalTime=50;
+    }else if(diff < 1000){
+        intervalTime=100;
+    }else if(diff < 2000){
+        intervalTime=200;
+    }else if(diff < 5000){
+        intervalTime=500;
+    }else if(diff < 10000){
         intervalTime=1000;
+    }else if(diff < 20000){
+        intervalTime=2000;
+    }else if(diff < 60000){
+        intervalTime=3000;
     }else if(diff < 300000 ){
         intervalTime = 10000;
         console.log('间隔时间大于1分钟，10秒输出一次倒计时');
@@ -130,12 +142,12 @@ function enterTimeCheckLoop(callback) {
         intervalTime = 30000;
         console.log('间隔时间大于5分钟，30秒输出一次倒计时');
     }
-    if (diff < -900) {
+    if (diff < -50) {
         console.log('时间过了！');
-    } else if (diff < 400) {
+    } else if (diff <= 10) {
+        console.log('时间到了！开抢');
         //当误差时间在500毫秒，开始进行抢购，这里不稳，可以修改为400毫秒
         callback && callback();
-        console.log('时间到了！开抢');
     } else {
         //这里是300毫秒一次请求,这里的间隔时间呀，应该动态变化，现在这个请求太频繁，没必要，我想想
         setTimeout(function () {
